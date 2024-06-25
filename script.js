@@ -4,7 +4,6 @@ function generateWorksheet() {
     const numQuestions = document.getElementById('num-questions').value;
     const operation = document.getElementById('operation').value;
     const digits = document.getElementById('digits').value;
-    const showAnswers = document.getElementById('show-answers').checked;
 
     const operations = {
         "Addition": "+",
@@ -31,7 +30,7 @@ function generateWorksheet() {
         currentQuestions.push({ question, answer });
     }
 
-    displayWorksheet(currentQuestions, showAnswers);
+    displayWorksheet(currentQuestions, document.getElementById('show-answers').checked);
 }
 
 function getRandomInt(digits) {
