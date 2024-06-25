@@ -1,3 +1,5 @@
+let currentQuestions = [];
+
 function generateWorksheet() {
     const numQuestions = document.getElementById('num-questions').value;
     const operation = document.getElementById('operation').value;
@@ -11,7 +13,7 @@ function generateWorksheet() {
         "Division": "/"
     };
 
-    const questions = [];
+    currentQuestions = [];
     for (let i = 0; i < numQuestions; i++) {
         let num1, num2;
         if (operation === "Division") {
@@ -26,10 +28,10 @@ function generateWorksheet() {
         }
         const question = `${num1} ${operations[operation]} ${num2}`;
         const answer = eval(question);
-        questions.push({ question, answer });
+        currentQuestions.push({ question, answer });
     }
 
-    displayWorksheet(questions, showAnswers);
+    displayWorksheet(currentQuestions, showAnswers);
 }
 
 function getRandomInt(digits) {
@@ -48,3 +50,7 @@ function displayWorksheet(questions, showAnswers) {
         worksheetDiv.appendChild(questionDiv);
     });
 }
+
+document.getElementById('show-answers').addEventListener('change', function() {
+    displayWorksheet(currentQuestions, this.checked);
+});
